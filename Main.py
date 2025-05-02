@@ -11,7 +11,7 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
-player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+player_pos = pygame.Vector2(screen.get_width() / 2, 100)
 tailleDeLEcran = (screen.get_width(), screen.get_height())
 print(tailleDeLEcran)
 #création du joueur
@@ -33,6 +33,7 @@ while running:
 
     Prosedural.generation()
     Joueur.Move2DAndJump()
+    Joueur.gravity()
 
     
 

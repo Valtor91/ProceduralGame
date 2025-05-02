@@ -1,4 +1,3 @@
-from dis import Positions
 
 from Entitie import *
 import pygame
@@ -13,22 +12,29 @@ class Player(Entitie):
         self.level = 1
         self.is_jumping = False
         self.jump_force = -20
-        self.gravity_force = 1
-        self.velocity_y = 0
-        self.screen = screen
+        self.gravity_force = 9.8
 
+        self.screen = screen
+        self.VectorGravity = (0,1)
 
     def Move2DAndJump(self):
         keys = pygame.key.get_pressed()
 
         # Déplacement horizontal
         if keys[pygame.K_d]:
-            self.Position.x += self.MaxSpeed
+            self.Position[0] += self.MaxSpeed
 
         if keys[pygame.K_q]:
-            self.Position.x -= self.MaxSpeed
-        pygame.draw.rect(self.screen, "red", (self.Position.x, self.Position.y, 10, 10))
+            self.Position[0] -= self.MaxSpeed
+        pygame.draw.rect(self.screen, "red", (self.Position[0],self.Position[1], 10, 10))
+        print(self.Position)
+    def gravity(self):
+        if not self.Position[1] >= 660:
+            gravity = [self.Position[0], self.VectorGravity[1]*self.gravity_force + self.Position[1]]
 
+            self.Position[1] = gravity[1]
+        else:
+            self.Position[1] = 660
 
 
 
