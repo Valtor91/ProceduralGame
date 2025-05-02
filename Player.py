@@ -23,11 +23,9 @@ class Player(Entitie):
         keys = pygame.key.get_pressed()
 
         # Déplacement horizontal
-        if keys[pygame.K_d]:
-            self.Position[0] += self.MaxSpeed
 
-        if keys[pygame.K_q]:
-            self.Position[0] -= self.MaxSpeed
+
+
 
         if keys[pygame.K_SPACE] and not self.is_jumping:
             self.is_jumping = True
@@ -66,21 +64,4 @@ class Player(Entitie):
         elif couleur_du_pixel ==(105, 105, 105):
             self.velocity_y = 0
             self.is_jumping = False
-        couleurGauche = self.screen.get_at((int(self.Position[0]+10), int(self.Position[1] )))
-
-        if  couleurGauche == (139, 69, 19):
-            self.Position[0] -= self.MaxSpeed
-        elif  couleurGauche == (34, 139, 34):
-            self.Position[0] -= self.MaxSpeed
-
-        elif  couleurGauche ==(105, 105, 105):
-            self.Position[0] -= self.MaxSpeed
-        couleurDroit = self.screen.get_at((int(self.Position[0] - 10), int(self.Position[1])))
-        if  couleurDroit == (139, 69, 19):
-            self.Position[0] += self.MaxSpeed
-        elif  couleurDroit == (34, 139, 34):
-            self.Position[0] += self.MaxSpeed
-
-        elif  couleurDroit ==(105, 105, 105):
-            self.Position[0] += self.MaxSpeed
 

@@ -20,9 +20,9 @@ class Chunck:
         self.perlin = False
         self.gene = []
         self.ground_level = screen.get_height() /2
-
+        self.avencer = 0
     def PerlinNoise(self):
-        global Value1D,Value2D
+
         noise_surface = pygame.Surface((self.screen.get_width(), self.screen.get_height()))
         for x in range(0,self.screen.get_width(),10):
 
@@ -66,8 +66,15 @@ class Chunck:
             self.gene= self.PerlinNoise()
 
             self.perlin = True
+        keys = pygame.key.get_pressed()
+        self.screen.blit(self.gene, (self.avencer, 0))
+        if keys[pygame.K_q]:
+           self.avencer += 10
+           self.screen.blit(self.gene, (self.avencer, 0))
 
-        self.screen.blit(self.gene, (0, 0))
+        if keys[pygame.K_d]:
+            self.avencer -= 10
+            self.screen.blit(self.gene, (self.avencer, 0))
 
 """
 self.screen.set_at((x, y), self.Black)
