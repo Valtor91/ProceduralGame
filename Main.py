@@ -32,9 +32,10 @@ while running:
 
 
     Prosedural.generation()
+
     Joueur.Move2DAndJump()
     Joueur.gravity()
-
+    Joueur.Colision()
     
 
 

@@ -5,6 +5,7 @@ import random
 
 class Chunck:
     def __init__(self, screen):
+        global Value1D,Value2D
         self.screen = screen
         self.Black = (0, 0, 0)  # Grottes
         self.Dirt = (139, 69, 19)  # Terre
@@ -21,9 +22,10 @@ class Chunck:
         self.ground_level = screen.get_height() /2
 
     def PerlinNoise(self):
-
+        global Value1D,Value2D
         noise_surface = pygame.Surface((self.screen.get_width(), self.screen.get_height()))
         for x in range(0,self.screen.get_width(),10):
+
             Value1D = int(self.ground_level+noise.pnoise1(x / self.Scale, octaves=self.Octave,base=self.seed) * 100)
 
             for y in range(0,self.screen.get_height(),10):
@@ -47,6 +49,7 @@ class Chunck:
                         repeaty=self.screen.get_height(),
                         base=self.seed
                 )
+
                     if Value2D <= 0.2:
                         color = self.Black
                     else:
@@ -60,7 +63,7 @@ class Chunck:
 
 
         if not self.perlin:
-            self.gene = self.PerlinNoise()
+            self.gene= self.PerlinNoise()
 
             self.perlin = True
 
