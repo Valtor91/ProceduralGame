@@ -21,42 +21,27 @@ class Chunck:
         self.gene = []
         self.ground_level = screen.get_height() /2
         self.avencer = 0
+        self.color = (255,255,255)
     def PerlinNoise(self):
 
         noise_surface = pygame.Surface((self.screen.get_width(), self.screen.get_height()))
+
         for x in range(0,self.screen.get_width(),10):
-
-            Value1D = int(self.ground_level+noise.pnoise1(x / self.Scale, octaves=self.Octave,base=self.seed) * 100)
-
+            Value1D = int(self.ground_level + noise.pnoise1(x / self.Scale, octaves=self.Octave, base=self.seed) * 100)
+            print(Value1D)
             for y in range(0,self.screen.get_height(),10):
-
                 if y < Value1D:
-                    color = (135, 206, 250)
+                    self.color = (135, 206, 250)
                 elif y == Value1D:
-                    color = self.Grass
-                elif y < Value1D + 20:
-                    color = self.Dirt
-                elif y < Value1D + 40:
-                    color = self.Rock
-                else:
-                    Value2D = noise.pnoise2(
-                        x / self.Scale,
-                        y / self.Scale,
-                        octaves=self.Octave,
-                        persistence=self.Persistence,
-                        lacunarity=self.Lacunarity,
-                        repeatx=self.screen.get_width(),
-                        repeaty=self.screen.get_height(),
-                        base=self.seed
-                )
+                    self.color = self.Dirt
+                pygame.draw.rect(noise_surface, self.color, pygame.Rect(x, y, 10, 10))
 
-                    if Value2D <= 0.2:
-                        color = self.Black
-                    else:
-                        color = self.Rock
-
-                pygame.draw.rect(noise_surface, color, (x, y, 10, 10))
         return noise_surface
+
+
+
+
+
 
     def generation(self):
 
