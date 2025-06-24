@@ -79,29 +79,40 @@ class Chunck:
     def generation(self):
 
 
+        if not self.perlin:
 
 
-        self.gene= self.PerlinNoise()
-        print(self.gene)
+            self.gene= self.PerlinNoise()
+            print(self.gene)
+            self.perlin = True
 
 
         keys = pygame.key.get_pressed()
         self.screen.blit(self.gene, (self.avencer, 0))
         if keys[pygame.K_q]:
-            self.avencer += 10
+            self.avencer += 5
             self.screen.blit(self.gene, (self.avencer, 0))
             self.get_width = self.get_width + 10
+
             print(self.get_width)
 
 
 
         if keys[pygame.K_d]:
-            self.avencer -= 10
+            self.avencer -= 5
             self.screen.blit(self.gene, (self.avencer, 0))
             self.get_width = self.get_width + 10
             print(self.get_width)
+            width = self.screen.get_width()
 
-"""
-self.screen.set_at((x, y), self.Black)
-else:
-self.screen.set_at((x, y), self.gray)"""
+
+            x_pixel = width - 1
+
+
+            couleur_du_pixel = self.screen.get_at((x_pixel, 0))
+            print(couleur_du_pixel)
+            if couleur_du_pixel == (135, 206, 250):
+                self.perlin = True
+            else:
+                self.perlin = False
+
