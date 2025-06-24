@@ -23,12 +23,17 @@ class Chunck:
         self.avencer = 0
         self.color = (255,255,255)
         self.Value2D = 0
+        self.get_width = self.screen.get_width()
+
     def PerlinNoise(self):
 
 
-        noise_surface = pygame.Surface((self.screen.get_width(), self.screen.get_height()))
+        noise_surface = pygame.Surface((self.get_width, self.screen.get_height()))
 
-        for x in range(0,self.screen.get_width(),10):
+
+
+
+        for x in range(0,self.get_width,10):
             Value1D = int(self.ground_level + noise.pnoise1(x / self.Scale, octaves=self.Octave, base=self.seed) * 100)
 
             for y in range(0,self.screen.get_height(),10):
@@ -60,7 +65,7 @@ class Chunck:
                 elif y > Value1D:
                     self.color = self.Dirt
 
-                    print(self.Value2D)
+
 
                 pygame.draw.rect(noise_surface, self.color, pygame.Rect(x, y, 10, 10))
 
@@ -75,19 +80,26 @@ class Chunck:
 
 
 
-        if not self.perlin:
-            self.gene= self.PerlinNoise()
 
-            self.perlin = True
+        self.gene= self.PerlinNoise()
+        print(self.gene)
+
+
         keys = pygame.key.get_pressed()
         self.screen.blit(self.gene, (self.avencer, 0))
         if keys[pygame.K_q]:
-           self.avencer += 10
-           self.screen.blit(self.gene, (self.avencer, 0))
+            self.avencer += 10
+            self.screen.blit(self.gene, (self.avencer, 0))
+            self.get_width = self.get_width + 10
+            print(self.get_width)
+
+
 
         if keys[pygame.K_d]:
             self.avencer -= 10
             self.screen.blit(self.gene, (self.avencer, 0))
+            self.get_width = self.get_width + 10
+            print(self.get_width)
 
 """
 self.screen.set_at((x, y), self.Black)
