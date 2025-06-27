@@ -115,4 +115,3 @@ class Chunck:
                 self.perlin = True
             else:
                 self.perlin = False
-
